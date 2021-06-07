@@ -1,0 +1,35 @@
+name = username@pcname
+
+pwd - print working directory
+(ex. name:~$ pwd -> /home/username)
+
+whoami - username
+(ex. name:~$ whoami -> username)
+
+cd - change directory
+(ex. name:~$ cd / -> name:/$)
+cd ~ - home directory
+cd . - current folder
+cd .. - parent directory
+
+ls - list
+mkdir - makedirectory
+(ex. name:~$ mkdir dir1 dir2 dir3)
+(ex. name:~$ mkdir -p dir4/dir5/dir6)
+(ex. name:~$ mkdir "folder 1" 'folder 2' folder\ 3)
+(ex. name:~$ mkdir -p "folder 4"/"folder 5")
+
+> - creating files
+(ex. name:~$ ls > output.txt)
+cat - concatenate
+(ex. name:~$ cat output.txt)
+(ex. name:~$ cat o* >> combined.txt)
+echo - diesplay on the screen
+(ex. name:~$ echo "This is a test")
+(ex. name:~$ echo "This is a test" > output.txt)
+(ex. name:~$ echo "This is a second test" >> output.txt)
+
+mv - move
+(ex. name:~$ mv 'file name' 'directory')
+cp - copy
+(
