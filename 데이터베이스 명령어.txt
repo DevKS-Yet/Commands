@@ -1,0 +1,117 @@
+xampp -> mysql -> bin
+mysql -u root -p -h localhost
+
+SHOW DATABASES;
+
+-------------------------------------------------
+
+CREATE DATABASE 데이터베이스명;
+  ex)	CREATE DATABASE `test_database`;
+
+-------------------------------------------------
+
+USE 데이터베이스명;
+  ex)	USE `test_database`;
+
+-------------------------------------------------
+
+
+CREATE TABLE 테이블명(
+필드명1 타입 ,
+필드명2 타입,
+제약조건(필드명1)
+);
+  ex)	CREATE TABLE `test_table`(
+	`name1` char,
+	`name2` int,
+	`name3` float,
+	PRIMARY KEY(`name1`)
+	);
+**제약조건: NOT NULL(빈칸X), UNIQUE(중복값X), PRIMARY KEY(NOT NULL + UNIQUE) [AUTO_INCREMENT), FOREIGN KEY(다른 테이블과 연결), DEFAULT(값 안줄시 입력될 것)
+
+-------------------------------------------------
+
+INSERT INTO 테이블명(필드명1, 필드명2) VALUES(데이터값1, 데이터값2);
+  ex)	INSERT INTO `test_table`(name1, name3)
+	VALUES('asdf', 123)
+	;
+**주의 `와 '의 표현은 다르다.
+
+-------------------------------------------------
+
+UPDATE 테이블명 SET 필드명1=데이터값1, 필드명2=데이터값2 WHERE 필드명=데이터값;
+  ex)	UPDATE `test_table`
+	SET `name1`='as', `name2`=2
+	WHERE `name1`='asdf'
+	;
+
+-------------------------------------------------
+
+[특정 조건/필드의] 레코드 선택
+  SELECT 필드명/* FROM 테이블명 [WHERE 조건];
+중복값 제거
+  SELECT DISTINCT 필드명 FROM 테이블명
+선택결과 정렬
+  SELECT 필드명/* FROM 테이블명 ORDER BY 필드명;
+  SELECT 필드명/* FROM 테이블명 ORDER BY 필드명 DESC;
+  SELECT 필드명/* FROM 테이블명 ORDER BY 필드명 DESC, 필드명 ASC;
+별칭(alias)
+  1. SELECT 필드명 AS 별칭 FROM 테이블명;
+  2. SELECT 필드명 FROM 테이블명 AS 별칭;
+  ex) SELECT 필드명, CONCAT(필드명1, ":", 필드명2) AS 새로운필드명 FROM 테이블명;
+
+-------------------------------------------------
+
+안중요 및 사용시 조심(
+ALTER TABLE 테이블명 ADD 필드명 타입 [AFTER/BEFORE 필드명];
+ALTER TABLE 테이블명 CHANGE 기존필드명 새로운필드명 타입;
+ALTER TABLE 테이블명 DROP 필드명;
+ALTER TABLE 테이블명 MODIFY COLUMN 필드명 타입;
+ALTER TABLE 테이블명 ALTER COLUMN 필드명 타입 변경할필드속성
+ALTER TABLE 테이블명 RENAME 새로운테이블명;
+
+DROP DATABASE 데이터베이스명 / TABLE 테이블명;
+
+DELETE FROM 테이블명 WHERE 필드명=데이터값;
+)
+
+
+
+
+Reference
+1) http://tcpschool.com/mysql/mysql_basic_select
+2) https://java119.tistory.com/category/MariaDB
+3) https://doorbw.tistory.com/22#recentComments
+
+
+-------------------------------------------------
+(1) 고객 "http://127.0.0.1:5000/"로 접속한다.
+(2) 서버에 접속한 순간 파이선컨트롤러가 작동한다.
+(3) 파이선 컨트롤러는 주소를 보고, 매칭되는 것을 찾습니다.("/")
+(4) "/" 담당자 누구냐? (def Homepage)
+(5) 담당자에게 특정 작업을 처리하게 한다. (홈페이지를 고객에게 전송함)
+(6) (def Homepage)는 "test1.html" 파일을 고객에게 전송한다.
+-------------------------------------------------
+@파이선컨트롤러와 웹페이지 작업하기
+---------------------------------------
+*프론트엔드 작업 (Front-end) : 디자인 관련 작업 / 사용자 인터페이스 / User experience
+---------------------------------------
+(1) 회원가입용으로 폼(form)페이지를 한개 만든다. 이 파일의 이름은 "member_register.html" 이다. 입력받아야할 것은 회원이름/핸폰/주소/아이디/암호이다.
+(2) 암호상자는 "*"로 표시되어야한다.
+(3) 회원이름은 10글자, 주소는 100글자, 아이디는 12글자, 암호는 20글자까지 입력가능하다.(max length)
+(4) 전송버튼을 누르면 "/member_register/" 라는 곳으로 데이터를 보내도록 되어있다.
+(5) 가능하면, 테이블태그(<table>)를 사용해서 깔끔한 인터페이스로 제작하도록 한다.
+---------------------------------------
+백엔드 작업 (Back-end) : 데이터베이스나 웹페이지를 다루는 작업
+---------------------------------------
+(6) C:\ 드라이브 밑에 "FlaskWebApp" 이라는 폴더를 만든다. (C:\FlaskWebApp)
+(7) 그안에 들어가서 "Flask_Controller.py" 라는 파일을 만든다. (이게 컨트롤러가 될 것이다.)
+(8) 그리고, "templates"라는 폴더도 만든다. (이곳엔 웹페이지들이 들어간다)
+(9) Flask_Controller.py 파일을 비주얼스튜디오코드 (Visual Studio Code) 에디터로 열어서 편집한다.
+  from flask import Flask, render_template
+  app = Flask(__name__)
+  @app.route("/")
+  def HomePage():
+	return render_template("member_register.html")
+
+  app.run(debug=True)
