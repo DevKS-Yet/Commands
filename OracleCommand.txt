@@ -11,6 +11,7 @@ SYS as sysdba (*비밀번호가 필요없는 sys 계정이다.)
 
 - 계정 생성
 CREATE USER 유저명 IDENTIFIED BY "비밀번호"; (*비밀번호를 ""로 안 감쌀 시 대소문자로 에러 발생 가능)
+CREATE USER 유저명 IDENTIFIED BY 비밀번호 DEFAULT TABLESPACE 테이블스페이스명;
 
 - 다른 계정으로 넘어가기
 conn 유저명/비밀번호;
@@ -34,10 +35,37 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON 테이터베이스명 TO 유저명;
 - DBA 권한 주기
 GRANT DBA TO 유저명;
 
+- 사용자 권한 확인
+SELECT GRANTEE, GRANTED_ROLE FROM DBA_ROLE_PRIVS WHERE GRANTEE='[계정대문자]';
+
+- 권한 롤 확인
+SELECT * FROM DBA_ROLES
+SELECT * FROM ROLE_SYS_PRIVS WHERE ROLE='[롤명]';
+
 - 권한 취소
 REVOKE CONNECT, RESOURCE FROM 유저명; (*CONNECT, RESOURCE 대신 SELECT 등등으로 대체 가능)
 
----------------------------------------------------------------
+------------------------------------
+[권한 리스트]                      |
+CONNECT(접속)                      |
+RESOURCE(저장소)                   |
+DBA(관리자)                        |
+CREATE SESSION(데이터베이스)       |
+CREATE DATABASE LINK               |
+CREATE MATERIALIZED VIEW           |
+CREATE PROCEDURE                   |
+CREATE PUBLIC SYNONYM              |
+CREATE ROLE                        |
+CREATE SEQUENCE                    |
+CREATE SYNONYM                     |
+CREATE TABLE(테이블 생성 권한)     |
+DROP ANY TABLE(테이블 제거 권한)   |
+CREATE TRIGGER                     |
+CREATE TYPE                        |
+CREATE VIEW                        |
+------------------------------------
+
+-------------------------------------------------------------------------------
 
 ※테이블 관련
 
@@ -80,6 +108,9 @@ DROP TABLE 테이블명;
 - 레코드 삽입
 INSERT INTO 테이블명(컬럼명1, 컬럼명2) VALUES(데이터, 데이터);
 예) INSERT INTO testtable(testNo, testName, testDate) VALUES(100, '홍길동', sysdate);
+
+- 다른 테이블에서 조회에서 레코드 삽입
+INSERT INTO 테이블명(1)(컬럼명(1),컬럼명(1)...) SELECT 컴럼명(2), 컬럼명(2), ... FROM 테이블명(2);
 
 - 레코드 수정
 UPDATE 테이블명 SET 수정하고자하는 필드명 = 데이터값 WHERE [조건문];
