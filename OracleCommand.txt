@@ -10,7 +10,7 @@ SELECT * FROM all_users;
 SYS as sysdba (*비밀번호가 필요없는 sys 계정이다.)
 
 - 계정 생성
-CREATE USER 유저명 IDENTIFIED BY "비밀번호"; (*비밀번호에 "가 없을시 대소문자로 에러 발생 가능)
+CREATE USER 유저명 IDENTIFIED BY "비밀번호"; (*비밀번호를 ""로 안 감쌀 시 대소문자로 에러 발생 가능)
 
 - 다른 계정으로 넘어가기
 conn 유저명/비밀번호;
