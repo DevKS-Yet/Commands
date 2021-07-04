@@ -123,3 +123,31 @@ SELECT 컬럼명, 컬럼명 FROM 테이블명;
 
 - 레코드 삭제
 DELETE FROM 테이블명 WHERE [조건문];
+
+-----------------------------------------------------------
+
+※시퀀스
+
+- 시퀀스 생성
+CREATE SEQUENCE 시퀀스명 [조건]
+[조건 : INCREMENT BY 숫자, START WITH 숫자, MAXVALUE 숫자 | NOMAXVALUE, MINVALUE 숫자 | NOMINVALUE, CYCLE | NOCYCLE, CACHE 숫자 | NOCACHE, ORDER | NOORDER]
+예) CREATE SEQUENCE test_seq
+START WITH 1
+INCREMENT BY 1;
+
+[조건설명]
+INCREMENT BY : 번호 생성 간격(생략시 1씩)
+START WITH : 생성할 첫 번호(생략시 1부터)
+MAXVALUE : 최대값 지정(생략시 NOMAXVALUE이며 10^27값이 최대)
+MINVALUE : 최소값 지정(생략시 NOMINVALUE이며 1이 최소)
+CYCLE : 최대값이나 최소값에 도달시 반복여부(생략시 NOCYCLE 기본값)
+CACHE : 공유메모리에 미리 생성할 번호 개수 지정(20개가 기본값)
+
+- INSERT문에 시퀀스 사용
+INSERT INTO 테이블명(컬럼명1, 컬럼명2) VALUES(시퀀스명.명령, 시퀀스명.명령);
+예) INSERT INTO testtable(testcolumn1, testcolumn2) VALUES(test_seq.NEXTVAL, test_seq.CURRVAL)
+
+- SELECT문에 시퀀스 사용
+SELECT ???...
+
+[명령 : NEXTVAL, CURRVAL]
