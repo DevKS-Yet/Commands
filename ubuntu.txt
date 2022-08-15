@@ -12,8 +12,11 @@ cd ~ - home directory
 cd . - current folder
 cd .. - parent directory
 
-ls - list
-mkdir - makedirectory
+ls - list their contents
+(ex. name:~$ ls)
+(ex. name:~$ ls > output.txt)
+
+mkdir - make directory
 (ex. name:~$ mkdir dir1 dir2 dir3)
 (ex. name:~$ mkdir -p dir4/dir5/dir6)
 (ex. name:~$ mkdir "folder 1" 'folder 2' folder\ 3)
@@ -24,12 +27,32 @@ mkdir - makedirectory
 cat - concatenate
 (ex. name:~$ cat output.txt)
 (ex. name:~$ cat o* >> combined.txt)
-echo - diesplay on the screen
+
+echo - display on the screen
 (ex. name:~$ echo "This is a test")
 (ex. name:~$ echo "This is a test" > output.txt)
 (ex. name:~$ echo "This is a second test" >> output.txt)
 
 mv - move
 (ex. name:~$ mv 'file name' 'directory')
+
 cp - copy
-(
+(ex. name:~$ cp 'file name' 'new file name')
+
+rm - remove
+(ex. name:~$ rm 'file name')
+
+rmdir - remove directory
+(ex. name:~$ rmdir dir1)
+
+wc - word count
+
+man - manual
+
+sudo reboot - restart
+sudo systemctl reboot - restart
+sudo shutdown -r now - restart
+sudo shutdown -r 5 - restart
+sudo init 6 - restart
+sudo init 2 - restart multiuser
+sudo init s - restart Single-User State
