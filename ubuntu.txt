@@ -46,6 +46,7 @@ rmdir - remove directory
 (ex. name:~$ rmdir dir1)
 
 wc - word count
+(ex. ls -l | wc -l)
 
 man - manual
 
@@ -62,3 +63,7 @@ systemctl enable iptables
 systemctl status fail2ban
 systemctl enable fail2ban
 systemctl disable fail2ban
+
+curl ip:port
+
+watch "ls -al"
