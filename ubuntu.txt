@@ -67,3 +67,5 @@ systemctl disable fail2ban
 curl ip:port
 
 watch "ls -al"
+
+scp
