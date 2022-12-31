@@ -69,3 +69,7 @@ curl ip:port
 watch "ls -al"
 
 scp
+
+
+
+https://ixnfo.com/en/iptables-rules-for-samba.html
