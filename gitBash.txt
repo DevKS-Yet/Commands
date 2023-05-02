@@ -69,3 +69,14 @@ git pull origin master
  
 // 에러 - ! [rejected] master -> master (non-fast-forward)
 git push origin +master
+
+// 리포지토리 병합 1
+git clone {신규 리포}
+git remote add {합치고자 하는 리포 이름} {합치고자 하는 리포 주소}
+git fetch {합치고자 하는 리포 이름}
+git merge --allow-unrelated-histories {합치고자 하는 리포 이름}/{합치고자 하는 리포 브랜치명}  // 이거 안하면 commit log 리셋된다... 눈물나네 하;;
+git remote remove {합치고자 하는 리포 이름}
+git push origin {브랜치 이름}  // 거의 master로 되어있을 것이다
+
+// 리포지토리 병합 2
+git subtree add --prefix={클론할 리포의 새로운 이름} {클론할 리포 주소} {옮겨올 리포 브랜치
